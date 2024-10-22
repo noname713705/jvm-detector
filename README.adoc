@@ -6,4 +6,12 @@
 :highlightjs-theme: agate
 
 == notes
+"java.version"
+"os.arch"
 
+"java.compiler" # for ibm
+"java.vm.name"
+"java.runtime.version"
+
+"java.vendor"
+"java.vendor.url"
