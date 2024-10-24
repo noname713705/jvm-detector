@@ -18,7 +18,6 @@
 
 "java.vendor.url"				1.0
 
-
 == specs
 * https://javaalmanac.io/jdk/1.0/api/java.lang.System.html#10906
 * https://javaalmanac.io/jdk/1.2/api/java/lang/System.html#getProperties()
