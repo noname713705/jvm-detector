@@ -7,11 +7,27 @@
 
 == notes
 "java.version"
+"java.runtime.version"	?? Oracle only
 "os.arch"
 
-"java.compiler" # for ibm
-"java.vm.name"
-"java.runtime.version"
+"java.compiler" 				# for ibm
 
-"java.vendor"
-"java.vendor.url"
+"java.vendor"						1.0
+"java.vm.vendor"				1.2
+"java.vm.name"					1.2
+
+"java.vendor.url"				1.0
+
+
+== specs
+* https://javaalmanac.io/jdk/1.0/api/java.lang.System.html#10906
+* https://javaalmanac.io/jdk/1.2/api/java/lang/System.html#getProperties()
+* https://javaalmanac.io/jdk/1.2/api/java/lang/System.html#getProperties()
+* https://javaalmanac.io/jdk/1.4/api/java/lang/System.html#getProperties()
+* https://docs.oracle.com/javase/1.5.0/docs/api/java/lang/System.html#getProperties()
+* https://docs.oracle.com/javase/6/docs/api/java/lang/System.html
+* https://docs.oracle.com/javase/7/docs/api/java/lang/System.html
+* https://docs.oracle.com/javase/8/docs/api/java/lang/System.html
+* https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html
+* https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/System.html
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/System.html
