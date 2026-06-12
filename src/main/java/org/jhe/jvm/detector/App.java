@@ -1,8 +1,7 @@
 package org.jhe.jvm.detector;
 
-import java.util.Iterator;
+import java.util.Enumeration;
 import java.util.Properties;
-import java.util.Set;
 
 
 public class App {
@@ -29,11 +28,9 @@ public class App {
 
 	public void displayAllProperties() {
 		Properties properties = System.getProperties();
-		Set keys = properties.keySet();
-		
-		Iterator it = keys.iterator();
-		while(it.hasNext()) {
-			String key = (String)it.next();
+		Enumeration keys = properties.propertyNames();
+		while(keys.hasMoreElements()) {
+			String key = (String)keys.nextElement();
 			System.out.println(key+"="+properties.getProperty(key));
 		}
 	}
@@ -41,13 +38,13 @@ public class App {
 		for (int i = 0; i < names.length; i++) {
 			String name = names[i];
 			String property = getProperty(name);
-			if (property.contains("Oracle")) {
+			if (property.indexOf("Oracle") >= 0) {
 				property += " <--- ##### BAM !";
 			}
-			if (property.contains("IBM Corp")) {
+			if (property.indexOf("IBM Corp") >= 0) {
 				property += " <--- ##### Warning !";
 			}
-			if (property.contains("OpenLogic")) {
+			if (property.indexOf("OpenLogic") >= 0) {
 				property += " <--- ##### Warning !";
 			}
 			System.out.println(property);
