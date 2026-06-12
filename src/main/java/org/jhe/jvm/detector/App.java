@@ -18,8 +18,9 @@ public class App {
 			}
 		}
 		String[] defaultProps = { "java.vendor", "java.version", "os.arch", "java.vendor.url", "java.compiler",
-				"java.vm.name", "java.runtime.version" };
+				"java.vm.name", "java.runtime.version", "java.home" };
 		displayProperties(defaultProps);
+		System.out.println("jdk=" + isJdk());
 	}
 
 	public void displayProperty(String name) {
@@ -48,6 +49,19 @@ public class App {
 				property += " <--- ##### Warning !";
 			}
 			System.out.println(property);
+		}
+	}
+
+	public boolean isJdk() {
+		String ext = System.getProperty("os.name").toLowerCase().indexOf("win") >= 0 ? ".exe" : "";
+		boolean pre9 = System.getProperty("java.version").indexOf("1.") == 0;
+		String javac = System.getProperty("java.home") + (pre9 ? "/../bin/javac" : "/bin/javac") + ext;
+		System.out.println("javac=" + javac);
+		try {
+			Process p = Runtime.getRuntime().exec(javac + " -version");
+			return p.waitFor() == 0;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 
