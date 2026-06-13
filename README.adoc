@@ -30,3 +30,36 @@
 * https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/System.html
 * https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/System.html
 * https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/System.html
+
+== going 1.0
+
+----
+● Yes, the maven-compiler-plugin supports Jikes via the compilerId:
+
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <configuration>
+      <compilerId>jikes</compilerId>
+      <source>1.1</source>
+      <target>1.1</target>
+    </configuration>
+  </plugin>
+  <plugin>
+    <groupId>org.codehaus.plexus</groupId>
+    <artifactId>plexus-compiler-jikes</artifactId>
+    <version>1.9.2</version>
+  </plugin>
+
+  The plexus-compiler-jikes artifact bridges Maven and Jikes. That said, it's very old and may have compatibility issues with newer Maven versions. Worth trying if you get Jikes installed.
+
+✻ Brewed for 5s
+
+❯ do I need a version of jikes on the machine ?
+
+● Yes — plexus-compiler-jikes is just a bridge; it still calls the jikes binary on the machine. So you need Jikes installed and on the PATH.
+
+/data/devel/jikes-1.22/src/jikes -classpath /data/devel/java-se-7u75-ri/jre/lib/rt.jar org/jhe/jvm/detector/App.java -> major.version=48.0
+/data/devel/jikes-1.22/src/jikes -target 1.1 -classpath /data/devel/java-se-7u75-ri/jre/lib/rt.jar org/jhe/jvm/detector/App.java -> major.version=45.3
+----
+
