@@ -2,6 +2,7 @@ package org.jhe.jvm.detector;
 
 import java.util.Enumeration;
 import java.util.Properties;
+import java.io.File;
 
 
 public class App {
@@ -18,7 +19,7 @@ public class App {
 			}
 		}
 		String[] defaultProps = { "java.vendor", "java.version", "os.arch", "java.vendor.url", "java.compiler",
-				"java.vm.name", "java.runtime.version", "java.home" };
+				"java.vm.name", "java.runtime.version", "java.class.version", "java.home" };
 		displayProperties(defaultProps);
 		System.out.println("jdk=" + isJdk());
 	}
@@ -54,12 +55,15 @@ public class App {
 
 	public boolean isJdk() {
 		String ext = System.getProperty("os.name").toLowerCase().indexOf("win") >= 0 ? ".exe" : "";
+		boolean _1_dot_1 = System.getProperty("java.version").indexOf("1.1") == 0;
 		boolean pre9 = System.getProperty("java.version").indexOf("1.") == 0;
-		String javac = System.getProperty("java.home") + (pre9 ? "/../bin/javac" : "/bin/javac") + ext;
+		String javac = System.getProperty("java.home") + (pre9 && ! _1_dot_1 ? "/../bin/javac" : "/bin/javac") + ext;
 		System.out.println("javac=" + javac);
 		try {
-			Process p = Runtime.getRuntime().exec(javac + " -version");
-			return p.waitFor() == 0;
+			return new File(javac).exists();
+			//1.2 javac does not support -version
+			//Process p = Runtime.getRuntime().exec(javac + " -version");
+			//return p.waitFor() == 0;
 		} catch (Exception e) {
 			return false;
 		}
