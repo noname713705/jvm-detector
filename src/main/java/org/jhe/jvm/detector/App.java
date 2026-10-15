@@ -18,7 +18,7 @@ public class App {
 				displayProperties(args);
 			}
 		}
-		String[] defaultProps = { "java.vendor", "java.version", "os.arch", "java.vendor.url", "java.compiler",
+		String[] defaultProps = { "java.vendor", "java.version", "os.name", "os.version", "os.arch", "line.separator", "java.vendor.url", "java.compiler",
 				"java.vm.name", "java.runtime.version", "java.class.version", "java.home" };
 		displayProperties(defaultProps);
 		System.out.println("jdk=" + isJdk());
@@ -33,7 +33,7 @@ public class App {
 		Enumeration keys = properties.propertyNames();
 		while(keys.hasMoreElements()) {
 			String key = (String)keys.nextElement();
-			System.out.println(key+"="+properties.getProperty(key));
+			System.out.println(key+"="+escape(properties.getProperty(key)));
 		}
 	}
 	public void displayProperties(String[] names) {
@@ -49,7 +49,7 @@ public class App {
 			if (property.indexOf("OpenLogic") >= 0) {
 				property += " <--- ##### Warning !";
 			}
-			System.out.println(property);
+			System.out.println(escape(property));
 		}
 	}
 
@@ -75,5 +75,15 @@ public class App {
 			property = "";
 		}
 		return name + "=" + property.toString();
+	}
+	public static String escape(String s) {
+		StringBuffer b = new StringBuffer();
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (c == '\n') b.append("\\n");
+			else if (c == '\r') b.append("\\r");
+			else b.append(c);
+		}
+		return b.toString();
 	}
 }

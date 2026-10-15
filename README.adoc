@@ -5,6 +5,15 @@
 :source-highlighter: highlight.js
 :highlightjs-theme: agate
 
+== descriptions
+* allows you to find things not always easy to determine on a installed jvm
+** which is the JVM vendor ? (Oracle, RedHat, IBM, temurin, AdoptOpenJdk, ...)
+** what is the java language version supported
+** what is the precise version of the package (up to build number)
+** what is the minimal supported class version
+** what is the OS the jvm runs on (though `os.name` and `os.vesion`)
+** is it a jre only version, or a full jdk
+
 == notes
 "java.version"
 "java.runtime.version"	?? Oracle only
@@ -12,7 +21,7 @@
 
 "java.compiler" 				# for ibm
 
-"java.vendor"						1.0
+"java.vendor"					1.0
 "java.vm.vendor"				1.2
 "java.vm.name"					1.2
 
